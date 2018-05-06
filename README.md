@@ -40,4 +40,5 @@ The script loads in the original study data and performs the following steps.
    * this creates a narrow dataset with one column called "value" showing the values and all of the measurement columns collapsed into one column called "variable"
    * dcast is used to create the summary of the mean of all subject and activity combinations for each measurment variable
    * this results in a wide form tidy data set which is stored in a variable called summary
+   * write.table() is used to write the summary to a txt file and save it in the data directory
    * write.csv() is used to write the summary to a csv file and save it in the data directory
