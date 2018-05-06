@@ -57,6 +57,6 @@ melt <- melt(meanStdData, id = c("subject", "activity"), measure.vars = names(me
 summary <- dcast(melt, subject + activity ~ variable, mean)
 
 ##write the summary to a csv
-write.table(summary, "data/summary.txt", row.names = FALSE)
-write.csv(summary, "data/summary.csv", row.names = FALSE)
+write.table(summary, "summary.txt", row.names = FALSE)
+write.csv(summary, "summary.csv", row.names = FALSE)
 
