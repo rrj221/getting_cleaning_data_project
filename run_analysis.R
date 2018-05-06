@@ -1,3 +1,8 @@
+##install.packages(c("plyr", "dplyr", "reshape2"))
+library(plyr)
+library(dplyr)
+library(reshape2)
+
 ##read meta data
 features <- read.table("data/features.txt")
 activityLabels <- read.table("data/activity_labels.txt")
@@ -34,8 +39,18 @@ meanStdData$activity <- meanStdData$activitylong
 meanStdData <- select(meanStdData, -activitylong)
 
 
-##update the names here
-
+##label the data set with descriptive variable names
+newNames <- names(meanStdData)
+newNames <- sub("^t", "time", newNames)
+newNames <- sub("^f", "frequency", newNames)
+newNames <- sub("Acc", "Accelerometer", newNames)
+newNames <- sub("Gyro", "Gyroscope", newNames)
+newNames <- sub("Freq", "Frequency", newNames)
+newNames <- sub("Mag", "Magnitude", newNames)
+newNames <- sub("-mean", "Mean", newNames)
+newNames <- sub("-std", "StdDev", newNames)
+newNames <- sub("-", "", newNames)
+names(meanStdData) <- newNames
 
 ##melt the data and dcast to create the summary
 melt <- melt(meanStdData, id = c("subject", "activity"), measure.vars = names(meanStdData)[3:length(names(meanStdData))])
